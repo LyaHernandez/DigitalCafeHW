@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<style>
+        table {
+            width: 50%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+
+<body>
+	<h2> Hi, {{ user.username }}! </h2>
+    {% if product_data %}
+	    <table>
+	        <tr>
+	            <th>Name</th>
+	            <th>Price</th>
+	        </tr>
+	        {% for product_record in product_data %}
+	            <tr>
+	                <td><a href="/product/{{ product_record.id }}">{{ product_record.name }}</a></td>
+	                <td>{{ product_record.price }}</td>
+	            </tr>
+	        {% endfor %}
+	    </table>
+	{% endif %}
+	
+	{% if messages %}
+	    <ul class="messages">
+	        {% for message in messages %}
+	            <li{% if messages.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+	        {% endfor %}
+	    </ul>
+	{% endif %}
+	
+	<h3><a href="/checkout">Go to check out</a></h3>
+</body>
+</html>
